@@ -18,7 +18,7 @@ services:
       retries: 5
 
   memocho:
-    image: ghcr.io/sitischu/memocho:latest
+    image: sitischu/memocho:latest
     container_name: memocho-app
     restart: unless-stopped
     ports:
