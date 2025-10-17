@@ -1,0 +1,44 @@
+/* 
+ * Memochō カスタムスタイル
+ * 
+ * このファイルでMemochōの見た目をカスタマイズできます。
+ * 変更後は docker compose restart memocho で反映されます。
+ */
+
+/* 
+ * 例: ダークテーマのカスタマイズ
+ * 以下のコメントを外して使用してください
+ */
+
+/*
+body {
+    background: #1a1a2e !important;
+}
+
+.textarea {
+    background: #16213e !important;
+    color: #eee !important;
+}
+
+footer {
+    background: #0f3460 !important;
+}
+
+#name-label {
+    color: #00adb5 !important;
+}
+
+.submit:active {
+    background: #00adb5 !important;
+}
+
+.code-row:target {
+    background-color: #00adb536 !important;
+}
+
+td.line-number:hover {
+    background: #00adb536 !important;
+}
+*/
+
+/* ここにカスタムスタイルを追加 */

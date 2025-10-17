@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: memocho-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: bin-store
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - memocho-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  memocho:
+    image: ghcr.io/sitischu/memocho:latest
+    container_name: memocho-app
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      BIN_MONGO_CSTRING: mongodb://mongodb:27017/bin-store
+      BIN_PORT: 4000
+      BIN_HOST: 0.0.0.0
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - memocho-network
+    volumes:
+      - ./custom:/usr/src/app/custom
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  memocho-network:
+    driver: bridge
